@@ -1,0 +1,226 @@
+/* ARTICULO HTML */
+
+.articulo {
+	display: flex;
+	flex-direction: row;
+	column-gap: 5vh;
+	align-items: flex-start;
+	justify-content: space-evenly;
+
+}
+
+.articulo img {
+	width: 50%;
+	max-width: 50%;
+	display: block;
+	object-fit: scale-down
+}
+
+.informacion {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	text-align: left;
+	row-gap: 2vh;
+	max-width: 50%;
+	width: 50%;
+	object-fit: cover;
+}
+
+.informacion a {
+	text-decoration: none;
+	color: #333333;
+
+}
+
+.boton-comprar {
+	background-color: #3498db;
+	color: #ffffff;
+	font-size: 2vh;
+	padding: 1vh 2vw;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.3s;
+	border-radius: 1vh;
+}
+
+.boton-comprar:hover {
+	transform: scale(1.1);
+}
+
+.precio {
+	color: green;
+}
+
+/* GALERIA HTML */
+.tiles {
+	display: grid;
+	grid-gap: 5vw;
+	grid-template-columns: auto auto auto;
+	margin-top: 2vh;
+
+}
+
+.tiles article {
+	height: 100%;
+
+	transition: transform 0.5s ease, opacity 0.5s ease;
+	position: relative;
+	border-radius: 5%;
+
+}
+
+.tiles article>.image {
+	height: 100%;
+	transition: transform 0.5s ease;
+	display: block;
+	border-radius: 5%;
+
+}
+
+.tiles article>.image img {
+	height: 100%;
+	display: block;
+	width: 100%;
+	border-radius: 5%;
+	object-fit: cover;
+
+}
+
+.tiles article>.image:before {
+	pointer-events: none;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	border-radius: 5%;
+	object-fit: cover;
+
+}
+
+.tiles article>a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*justify-content: center;*/
+	justify-content: space-between;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	transition: background-color 0.5s ease, transform 0.5s ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: #ffffff;
+	text-align: center;
+	text-decoration: none;
+	z-index: 3;
+}
+
+
+.tiles article>a:hover {
+	color: #ffffff !important;
+}
+
+.tiles article>a h2 {
+	margin: 0;
+	opacity: 0;
+}
+
+.tiles article>a .content {
+
+	transition: max-height 0.5s ease, opacity 0.5s ease;
+	width: 100%;
+	line-height: 1.5;
+	margin-top: 0.35em;
+	margin-bottom: 1vh;
+	opacity: 0;
+}
+
+/* Este efecto lo hace sólo cuando la pantalla no es táctil */
+body:not(.is-touch) .tiles article:hover>a h2 {
+	opacity: 100;
+}
+
+body:not(.is-touch) .tiles article:hover>a .content {
+	opacity: 100;
+}
+
+body:not(.is-touch) .tiles article:hover>.image {
+
+	transform: scale(1.1);
+}
+
+body:not(.is-touch) .tiles article:hover>.image:before {
+	background-color: #333333;
+	opacity: 0.55;
+}
+
+
+/* Extra small devices (600px and down) */
+@media only screen and (max-width: 600px) {
+	.tiles {
+		grid-template-columns: auto;
+		grid-gap: 5vh;
+	}
+
+	.articulo {
+		flex-direction: column;
+		row-gap: 5vh;
+
+
+	}
+
+	.articulo img {
+		width: 100%;
+		max-width: 100%;
+
+	}
+
+	.informacion {
+		max-width: 100%;
+		width: 100%;
+		text-align: center;
+		align-items: center;
+
+	}
+	.informacion .descripcion{
+		text-align: justify;
+	}
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+
+
+	.tiles {
+		grid-template-columns: auto auto;
+		grid-gap: 5vh;
+	}
+
+	.articulo {
+		flex-direction: column;
+		row-gap: 5vh;
+
+
+	}
+
+	.articulo img {
+		width: 100%;
+		max-width: 100%;
+
+	}
+
+	.informacion {
+		max-width: 100%;
+		width: 100%;
+
+
+	}
+}

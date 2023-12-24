@@ -1,0 +1,189 @@
+section{
+    display: flex;
+    justify-content: center;
+}
+.seccion{
+	display: grid;
+	grid-gap: 1vw;
+	grid-template-columns: auto;
+    
+}
+.contenedor{
+	display: grid;
+	grid-gap: 5vw;
+	grid-template-columns: auto;
+    margin-bottom: 5vw;
+}
+
+.contenedor h3{
+    color: #f12554;
+
+}
+.contenedor table {
+    background-color: white;
+    border-collapse: collapse;
+    width: 30vw;    
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    justify-self: center;
+  }
+
+.contenedor th, td {
+    border: 0.1vw solid #dddddd;
+    padding: 0.8vw;
+    text-align: left;
+    color: #585858;
+    max-width: 20vw;
+    white-space: nowrap;        /* Evita el retorno de línea del texto */
+    overflow: hidden;           /* Oculta cualquier contenido que sobresalga de la celda */
+    text-overflow: ellipsis;    
+  }
+
+.contenedor th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #f12554;
+}
+
+.contenedor a{
+    text-decoration: none;
+    color: #dddddd;
+}
+
+.contenedor td:hover{
+    background-color: #f2f2f2;
+    color:#f12554
+}
+
+.contenedor a:hover{
+    background-color: #f2f2f2;
+    color:#f12554
+}
+
+
+.contenedor .delete{
+    
+    margin-right: 2vh;
+    background-color: #f12554; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 0.5vw 3vh; /* Relleno interno */
+    border: none; /* Quita el borde */
+    border-radius: 2vw; /* Borde redondeado */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 1vw; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    
+}
+
+.contenedor .update{
+    
+    margin-right: 2vh;
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 0.5vw 3vh; /* Relleno interno */
+    border: none; /* Quita el borde */
+    border-radius: 2vw; /* Borde redondeado */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 1vw; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+}
+
+.contenedor .nuevo{
+    color: #f2f2f2;
+    margin-right: 2vh;
+    background-color: #001F3F50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 0.5vw 3vh; /* Relleno interno */
+    border: none; /* Quita el borde */
+    border-radius: 2vw; /* Borde redondeado */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 1vw; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+}
+
+/*
+.container-form{
+    background: radial-gradient(circle, #ffcccc, #ff9999);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+*/
+
+form{
+    
+    /*height: 15vh;*/
+    border-radius: 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.entrada{
+    display: grid;
+	grid-gap: 1vw;
+	grid-template-columns: auto auto auto auto auto auto;
+    margin-bottom: 2vh;
+}
+
+input{
+    border-color: #f12554;
+    border-style: solid;
+    border-width: 1px;
+
+}
+.contenedor label{
+    
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    color: #f12554;
+}
+
+.botones{
+    justify-self: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2vw;
+}
+
+.botones button{
+    width: 15vw;
+    background-color: #f12554; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 0.5vw 3vh; /* Relleno interno */
+    border: none; /* Quita el borde */
+    border-radius: 2vw; /* Borde redondeado */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 1vw; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  }
+
+  button:hover {
+    background-color: #f12554;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+
+    .entrada{
+        grid-template-columns: auto auto;
+        
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) {
+    .entrada{
+        grid-template-columns: auto ;
+        
+    }
+}

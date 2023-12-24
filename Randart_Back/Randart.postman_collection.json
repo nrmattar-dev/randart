@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "ad350ab2-1da4-453b-9198-d672ba024bf2",
+		"name": "Randart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31314017"
+	},
+	"item": [
+		{
+			"name": "Articulos",
+			"item": [
+				{
+					"name": "articulos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/articulos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"articulos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "articulo_insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"autor\": \"Carlos Sanchez\",\r\n        \"descripcion\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id, autem iusto tempore, quos amet esse inventore animi aut consequatur maiores quasi alias vero temporibus mollitia. Minima, consequuntur quas. Neque, voluptatum.\",\r\n        \"id\": 1,\r\n        \"imagen\": \"/../images/Imagen (1).jpg\",\r\n        \"precio\": \"105.00\",\r\n        \"titulo\": \"El suspiro del universo\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/articulo_insert",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"articulo_insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "articulo_delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/articulo_delete/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"articulo_delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "articulo_update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"autor\": \"Gustavo Jimenez\",\r\n        \"descripcion\": \"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id, autem iusto tempore, quos amet esse inventore animi aut consequatur maiores quasi alias vero temporibus mollitia. Minima, consequuntur quas. Neque, voluptatum.\",\r\n        \"imagen\": \"/../images/Imagen (3).jpg\",\r\n        \"precio\": \"138.00\",\r\n        \"titulo\": \"Cosas del mundo\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/articulo_update/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"articulo_update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Galerias",
+			"item": [
+				{
+					"name": "galerias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/galerias",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"galerias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "galeria_insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"mapa_url\": \"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2079097982073!2d-58.446152924957396!3d-34.59890377295599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca0ba30426b3%3A0xcc4c738ba314fc84!2sGurruchaga%20301%2C%20C1414%20DHG%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1694811996828!5m2!1ses!2sar\",\r\n        \"observaciones\": \"Gurruchaga 301, Villa Crespo. De miércoles a sábado de 15:30 a 19:30 h.\",\r\n        \"razon_social\": \"Selvanegra\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/galeria_insert",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"galeria_insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "galeria_delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/galeria_delete/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"galeria_delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "galeria_update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"mapa_url\": \"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2079097982073!2d-58.446152924957396!3d-34.59890377295599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca0ba30426b3%3A0xcc4c738ba314fc84!2sGurruchaga%20301%2C%20C1414%20DHG%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1694811996828!5m2!1ses!2sar\",\r\n        \"observaciones\": \"Gurruchaga 301, Villa Crespo. De miércoles a sábado de 15:30 a 19:30 h.\",\r\n        \"razon_social\": \"Selvanegra 2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/galeria_update/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"galeria_update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
