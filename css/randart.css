@@ -1,3 +1,9 @@
+@import url('banner.css');
+@import url('articulos.css');
+@import url('crud.css');
+@import url('formulario.css');
+
+
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Shantell+Sans:wght@300&display=swap');
 

@@ -3,7 +3,8 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        url:"https://randart.pythonanywhere.com/galerias",
+        //url:"https://randart.pythonanywhere.com/galerias",
+        url:"http://127.0.0.1:5000/galerias",
         galerias:[],
         error:false,
         cargando:true

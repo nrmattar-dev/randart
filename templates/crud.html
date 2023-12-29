@@ -2,15 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="arte, galeria, fotos, pinturas, coleccion">
-    <meta name="description" content="Galeria de arte">
-    <link rel="shortcut icon" href="../images/logo.ico" type="image/x-icon">
-    <!-- Relacionar con archivo de estilos    -->
-    <link rel="stylesheet" href="../css/randart.css" />
-    <link rel="stylesheet" href="../css/crud.css" />
-    <script src="https://kit.fontawesome.com/0a26ed8765.js" crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
     <title>CRUD</title>
 </head>
 
@@ -188,53 +180,9 @@
 
         </div>
 
-        <!--
-			<div id="app">
-				<section v-if="error">Lo sentimos se produjo un error</section>
-				<section v-else>
-					<section class="directorio" v-if="cargando">
-						<div class="spinner-border"></div>
-						<p>Cargando .....</p>
-	
-					</section>
-					<section v-else>
-						<article class="articulo">
-							<img :src="articulo.imagen" alt="" />
-							<div class="informacion">
-							  <h2>{{articulo.titulo}}</h2>
-							  <div><p><b>Autor:</b></p><p>{{articulo.autor}}</p></div>
-							  <div><p><b>Descripción:</b></p><p class="descripcion">{{articulo.descripcion}}</p></div>
-							  <div><p><b>Precio:</b></p><p class="precio"><b>U$S {{articulo.precio}}.- (ARS $ ${{articulo.precio*dolar}}.-)</b></p></div>
-							  <button class="boton-comprar">Comprar</button>
-							  <div><p><a href="galeria.html">Volver</a></p></div>
-							</div>
-						  </article>
-	
-						</section>
-					</section>
-				</section>
-			</div>
-			-->
-
     </main>
-    <footer id="footer">
+    <footer id="footer"></footer>
 
-        <h3>Seguinos</h3>
-        <ul class="seguinos">
-            <li><a href="https://twitter.com/" class="icon brands style2 fa-twitter" target="_blank">
-                    <span class="label">Twitter</span></a></li>
-            <li><a href="https://www.facebook.com/?locale=es_LA" class="icon brands style2 fa-facebook-f"
-                    target="_blank">
-                    <span class="label">Facebook</span></a></li>
-            <li><a href="https://www.instagram.com/" class="icon brands style2 fa-instagram" target="_blank">
-                    <span class="label">Instagram</span></a></li>
-            <li><a href="mailto:nrmattar@gmail.com" class="icon solid style2 fa-envelope" target="_blank">
-                    <span class="label">Email</span></a></li>
-        </ul>
-        <p class="copyright">&copy; Randart. Todos los derechos reservados</p>
-    </footer>
-
-    <script src="../js/menu.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../js/crud.js"></script>
 

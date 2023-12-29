@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Obtener imágenes directamente de la API
-    const url = "https://randart.pythonanywhere.com/articulos";
+    //const url = "https://randart.pythonanywhere.com/articulos";
+    const url = "http://127.0.0.1:5000/articulos";
     fetch(url)
         .then(response => response.json())
         .then(data => {
