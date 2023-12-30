@@ -28,7 +28,8 @@
 	
 					</section>
 					<section v-else>
-						<article class="articulo">
+						
+						<article class="articulo" v-for="articulo in articulos">
 							<img :src="articulo.imagen" alt="" />
 							<div class="informacion">
 							  <h2>{{articulo.titulo}}</h2>

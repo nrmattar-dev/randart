@@ -5,21 +5,30 @@ from sqlalchemy.sql.expression import func
 
 articulos_bp = Blueprint('articulos', __name__)
 
+
 @articulos_bp.route("/articulos", methods=['GET'])
 def obtener_articulos():
-    all_articulos = Articulo.query.order_by(func.rand()).limit(12).all()
-    data_serializada = [{"id": registro.id, "titulo": registro.titulo, "autor": registro.autor, "descripcion": registro.descripcion, "precio": registro.precio, "imagen": registro.imagen} for registro in all_articulos]
+
+    id = int(request.args.get('id', 0))
+    rand = request.args.get('rand', 'false').lower() == 'true'
+
+    if not id:
+        if not rand:
+            all_articulos = Articulo.query.order_by().all()
+        else:
+            all_articulos = Articulo.query.order_by(func.rand()).limit(12).all()
+    else:
+        all_articulos = [Articulo.query.get(id)]
+        
+    data_serializada = [{"id": articulo.id, "titulo": articulo.titulo, "autor": articulo.autor, "descripcion": articulo.descripcion, "precio": articulo.precio, "imagen": articulo.imagen} for articulo in all_articulos if articulo is not None]
+   
     return jsonify(data_serializada)
 
 
 # Ruta para insertar un registro en la DB
 @articulos_bp.route("/articulo_insert", methods=['POST'])
 def registro():
-    # {
-    #   "nombre": "Fernando"
-    # }
-    #    <input type="text" name="nombre" id="nombre">
-    
+
     titulo_recibido = request.json["titulo"].capitalize()
     autor_recibido = request.json["autor"].capitalize()
     descripcion_recibido = request.json["descripcion"]
@@ -73,3 +82,5 @@ def delete(id):
 
     data_serializada = [{"id": delete_Articulo.id, "titulo": delete_Articulo.titulo, "autor": delete_Articulo.autor, "descripcion": delete_Articulo.descripcion, "precio": delete_Articulo.precio, "imagen": delete_Articulo.imagen}]
     return jsonify(data_serializada)
+
+

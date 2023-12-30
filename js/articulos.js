@@ -4,14 +4,13 @@ const { createApp } = Vue
     data() {
       return {
         //url:"https://randart.pythonanywhere.com/articulos",
-        url:"http://127.0.0.1:5000/articulos",
+        url:"http://127.0.0.1:5000/articulos?rand=true",
         articulos:[],
         error:false,
         cargando:true
       }
     },
-    // Se llama después de que la instancia haya 
-    // terminado de procesar todas las opciones relacionadas con el estado.
+    
     created() {
         this.fetchData(this.url)  // Invocando al método
     },
@@ -29,21 +28,5 @@ const { createApp } = Vue
                     this.error=true              
                 });
         }
-        /*,        
-        // el id se necesita para buscar en la DB y eliminarlo
-        eliminar(id) {
-            const url = 'http://localhost:5000/borrar/' + id;
-            var options = {
-                method: 'DELETE',
-            }
-            fetch(url, options)
-                .then(res => res.text()) // or res.json()
-                .then(res => {
-                    alert("Eliminado correctamente")
-                    location.reload();
-                })
-        }
-        */
-
     },
   }).mount('#app')

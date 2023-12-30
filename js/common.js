@@ -112,8 +112,6 @@ function construye_head() {
     
     var cssFilePath = (currentPagePath === "/index.html" ? 'css' : '../css') + "/randart.css"
 
-    console.log("cssFilePath: ", cssFilePath)
-
     // Crea el elemento link para el archivo CSS
     var linkStylesheet = document.createElement("link");
     linkStylesheet.rel = "stylesheet";
