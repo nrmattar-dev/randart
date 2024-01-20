@@ -15,11 +15,7 @@ def obtener_galerias():
 # Ruta para insertar un registro en la DB
 @galerias_bp.route("/galeria_insert", methods=['POST'])
 def registro():
-    # {
-    #   "nombre": "Fernando"
-    # }
-    #    <input type="text" name="nombre" id="nombre">
-    
+
     razon_social_recibido = request.json["razon_social"].capitalize()
     mapa_url_recibido = request.json["mapa_url"]
     observaciones_recibido = request.json["observaciones"]

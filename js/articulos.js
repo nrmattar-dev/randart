@@ -24,6 +24,7 @@ const { createApp } = Vue
                     this.cargando=false
                 })
                 .catch(err => {
+                    alert("Error al grabar" )
                     console.error(err);
                     this.error=true              
                 });

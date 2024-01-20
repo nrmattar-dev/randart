@@ -2,6 +2,7 @@
 from flask import Blueprint, request, jsonify
 from models import db,Articulo
 from sqlalchemy.sql.expression import func
+from werkzeug.utils import secure_filename
 
 articulos_bp = Blueprint('articulos', __name__)
 
@@ -21,11 +22,50 @@ def obtener_articulos():
         all_articulos = [Articulo.query.get(id)]
         
     data_serializada = [{"id": articulo.id, "titulo": articulo.titulo, "autor": articulo.autor, "descripcion": articulo.descripcion, "precio": articulo.precio, "imagen": articulo.imagen} for articulo in all_articulos if articulo is not None]
-   
+    
+    base_url = "http://127.0.0.1:5000/uploads/"  # Reemplaza con la URL de tu servidor
+    for articulo in data_serializada:
+        articulo["imagen"] = f"{base_url}{articulo['imagen']}"
+
     return jsonify(data_serializada)
 
-
 # Ruta para insertar un registro en la DB
+@articulos_bp.route("/articulo_insert", methods=['POST'])
+def registro():
+    # Obtén el resto de los campos del formulario
+    filename = ""
+    titulo_recibido = request.form.get("titulo").capitalize()
+    autor_recibido = request.form.get("autor").capitalize()
+    descripcion_recibido = request.form.get("descripcion")
+    precio_recibido = request.form.get("precio")
+    fecha_recibido = request.form.get("fecha")
+
+    # Verifica si se ha cargado un archivo
+    if 'imagen' in request.files:
+        imagen_recibida = request.files['imagen']
+        # Utiliza secure_filename para asegurar un nombre de archivo seguro
+        filename = secure_filename(imagen_recibida.filename)
+        # Guarda el archivo en tu sistema de archivos
+        imagen_recibida.save(f'uploads/{filename}')
+    else:
+        # Si no se ha cargado un archivo, establece el nombre de imagen en None o algún valor predeterminado
+        imagen_recibida = None
+
+    # Crea un nuevo registro en la base de datos
+    nuevo_registro = Articulo(
+        titulo=titulo_recibido,
+        autor=autor_recibido,
+        descripcion=descripcion_recibido,
+        precio=precio_recibido,
+        fecha=fecha_recibido,
+        imagen=filename  # Guarda el nombre del archivo en la base de datos
+    )
+    db.session.add(nuevo_registro)
+    db.session.commit()
+
+    return "Solicitud vía POST recibida correctamente."
+
+'''
 @articulos_bp.route("/articulo_insert", methods=['POST'])
 def registro():
 
@@ -41,7 +81,7 @@ def registro():
 
     return "Solicitud vía post recibida."
 
-
+'''
 
 # Modificar un registro
 @articulos_bp.route('/articulo_update/<id>', methods=['PUT'])

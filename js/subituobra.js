@@ -3,14 +3,7 @@ const { createApp } = Vue;
 const app = createApp({
    data() {
       return {
-         // Inicialmente, cargaremos tanto articulos como galerias
-         urls: {
-            //articulos: "https://randart.pythonanywhere.com/articulos",
-            articulos: "http://127.0.0.1:5000/articulos"
-         },
-         datos: {
-            articulos: []
-         },
+         imagenUrl: null,
          imagenFile: null,
          error: false,
          cargando: true
@@ -19,55 +12,59 @@ const app = createApp({
 
    methods: {
 
-    articulo_clear()
-    {
-        this.articulo_id = null;
-        this.titulo = "";
-        this.autor = "";
-        this.fecha = "";
-        this.descripcion = "";
-        this.precio = "";
-        this.imagenUrl = null;  // Asegúrate de utilizar la propiedad correcta
-        this.$refs.fileInput.value = null;  // Limpia el campo de entrada de archivos
-        document.getElementById('articulo_id').value = null;
-        document.getElementById('titulo').value = "";
-        document.getElementById('autor').value = "";
-        document.getElementById('fecha').value = "";
-        document.getElementById('descripcion').value = "";
-        document.getElementById('precio').value = "";    
-        
-    },    
-    articulo_save() {
-        const formData = new FormData();
-        formData.append("titulo", this.titulo);
-        formData.append("autor", this.autor);
-        formData.append("descripcion", this.descripcion);
-        formData.append("precio", this.precio);
-        formData.append("imagen", this.imagen);
+      articulo_clear() {
+         document.getElementById('articulo_id').value = null;
+         document.getElementById('titulo').value = "";
+         document.getElementById('autor').value = "";
+         document.getElementById('fecha').value = "";
+         document.getElementById('descripcion').value = "";
+         document.getElementById('precio').value = "";
   
-         fetch("http://127.0.0.1:5000/articulo_insert", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("creado");
-            alert("Artículo Guardado");
-            this.articulo_clear();
-            this.fetchData("articulos");
-          })
-          .catch((err) => {
-            console.error(err);
-            alert("Error al grabar");
-          });
+         const fileInput = this.$refs.fileInput; //en HTML tengo ref="fileInput"
+         fileInput.value = null;
+
+         this.imagenUrl = null;
+
       },
-      // ... (otros métodos)
+      articulo_save() {
+         const formData = new FormData();
+
+         formData.append("titulo", document.getElementById('titulo').value);
+         formData.append("autor", document.getElementById('autor').value);
+         formData.append("descripcion", document.getElementById('descripcion').value);
+         formData.append("precio", document.getElementById('precio').value);
+
+         const imagenInput = document.getElementById('imagen');
+         formData.append("imagen", imagenInput.files[0]);
+
+         let url = "http://127.0.0.1:5000/articulo_insert"
+         var options = {
+             body: formData, //Si fuera un Json lo que envío sería: JSON.stringify(galeria_json),
+             method: 'POST',
+         }
+
+         fetch(url,options)
+            .then((response) => {
+               if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+               }
+               return response.text(); //Desde el Back sólo devuelvo un mensaje. Si escribo response.json(); recibo error.
+            })
+            .then((data) => { //El response.text() se pasa como argumento al data.
+               alert(data);
+               this.articulo_clear();
+            })
+            .catch((err) => {
+               alert("Error al grabar");
+               console.error(err);
+               this.error=true;
+            });
+      },
       handleFileUpload(event) {
-        const file = event.target.files[0];
-        if (file) {
-          // Guardar el archivo para su posterior envío
-          this.imagenFile = file;
-        }
+         const file = event.target.files[0];
+         if (file) {
+            this.imagenUrl = URL.createObjectURL(file);
+          }
       },
    }
 }).mount('#app');

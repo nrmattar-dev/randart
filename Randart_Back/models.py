@@ -13,6 +13,7 @@ class Articulo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(50))
     autor = db.Column(db.String(50))
+    fecha = db.Column(db.Date)
     descripcion = db.Column(db.String(500))
     precio = db.Column(db.Numeric(precision=10, scale=2))
-    imagen = db.Column(db.Text)
+    imagen = db.Column(db.String(50))

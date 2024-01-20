@@ -42,7 +42,7 @@
                                 <input type="text" name="precio" id="precio">
                                 <label for="imagen">Imagen:</label>
                                 <input type="file" ref="fileInput" @change="handleFileUpload" id="imagen">
-                                <img :src="imagenUrl" alt="Imagen previa" v-if="imagenUrl">
+                                <img :src="imagenUrl" alt="Imagen previa" v-if="imagenUrl"><!--v-if="imagenUrl" si "imagenUrl" existe, la muestra -->
                             </div>
                         </form>
 
