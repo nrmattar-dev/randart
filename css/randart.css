@@ -10,6 +10,7 @@
 
 * {
 	margin: 0;
+	box-sizing: border-box;
 
 }
 
@@ -131,7 +132,7 @@ a {
 {
 	transform: scale(1.1);
 }*/
-li:hover {
+header li:hover {
 	transform: scale(1.1) rotate(5deg);
 	transition: transform 0.3s;
 	cursor: pointer;

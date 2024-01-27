@@ -5,489 +5,128 @@
     <script src="../js/common.js"></script>
     <title>Galería</title>
     <style>
-        .error-span {
-            color: #b10000;
-            font-size: 12px;
-            font-weight: 400;
-            height: 16px;
-            line-height: 1.3;
-            margin-top: 4px;
-            padding-left: 12px
+        .Registro {
+            display: grid;
+            grid-template: auto / 1fr;
+            gap: 3vh 0;
         }
 
-
-        .field-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            position: relative
+        .Registro-Contenedor {
+            display: grid;
+            grid-template: auto / 1fr 1fr;
+            gap: 3vh 1vw;
+            /*max-width: 50%;*/
+            margin-left: auto;
+            margin-right: auto;
+            flex-wrap: wrap;
         }
 
-        .field-container .field-select-input {
-            height: 32px;
-            padding: 0 12px
+        .Registro-Contenedor>.Campo:first-child
+
+        /*,.Registro-Contenedor>.Campo:nth-child(n+10) */
+            {
+            grid-column: 1/3;
         }
 
-        .field-label {
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 1.3;
-            white-space: nowrap
-        }
-
-        .field-input,
-        .field-label {
-            font-family: Roboto;
-            padding: 0 12px
-        }
-
-        .field-input {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: 0 0;
-            border-radius: 8px;
+        .Clase-Input input,
+        .Clase-Combo-input {
+            background-color: transparent;
+            border-radius: 1vh;
             border: 1px solid #c2c2c2;
-            color: #555;
-            font-weight: 300;
+            padding: 1vh 1vw;
+            transition: border-color .1s ease-in-out;
             width: 100%;
-            height: 32px
+            box-sizing: border-box;
+            /*asegura que el ancho especificado incluya tanto el contenido como cualquier relleno o borde que se pueda agregar al elemento. */
         }
 
-        .field-input::-webkit-input-placeholder,
-        .field-input::placeholder {
-            color: #c2c2c2
+        .Clase-Combo-input {
+            cursor: pointer;
         }
 
-        .field-input:active,
-        .field-input:focus {
-            border: 1px solid #9b9b9b;
-            color: #555
-        }
-
-        .field-input:hover:not(:focus):not(:active) {
-            background-color: #fafafa;
-            border: 1px solid #c2c2c2
-        }
-
-        .field-input:-webkit-autofill,
-        .field-input:-webkit-autofill:focus {
-            -webkit-transition: background-color 600000s 0s, color 600000s 0s;
-            transition: background-color 600000s 0s, color 600000s 0s
-        }
-
-        .field-input-disabled {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            border: 1px solid #c2c2c2;
-            color: #9b9b9b;
-            cursor: not-allowed;
-            font-family: Roboto;
-            font-weight: 300;
-            height: 32px;
-            padding: 0 12px;
-            width: 100%
-        }
-
-
-        .field-select {
-            height: auto;
-            position: relative;
-            width: 100%;
-            outline: 0;
-            margin-bottom: 20px
-        }
-
-        .field-select>label {
-            position: absolute;
-            left: 10px;
-            padding: 0 5px;
-            background-color: #fff;
-            color: #777;
-            font-size: 14px;
-            pointer-events: none;
-            transition: top .1s ease-in-out, font-size .1s ease-in-out;
-            display: flex;
+        .Clase-Input label,
+        .Clase-Combo label {
             align-items: center;
+            background-color: #fff;
+            border-radius: 1vh;
+            position: absolute;
+            transform: translateY(-50%);
             top: 50%;
-            transform: translateY(-50%)
+            left: 10%;
+            transition: top .1s ease-in-out, font-size .1s ease-in-out, height .1s ease-in-out;
         }
 
-        .field-select-outlined.outlined-error:before {
-            top: 12px;
-            border-color: #b10000
-        }
-
-        .field-select:before {
-            border-radius: 1px;
+        .Clase-Combo:before {
             border-color: #9b9b9b;
             border-style: solid;
-            border-width: 0 2px 2px 0;
+            border-width: 0 0.2vw 0.2vw 0;
             cursor: pointer;
             content: "";
             height: 10px;
             position: absolute;
-            right: 14px;
+            right: 2vw;
             top: 30%;
             transform: rotate(45deg);
             width: 10px;
-            z-index: 0
+            z-index: -100;
         }
 
-        .field-select:focus-within:before {
-            border-color: #3b3b3b
-        }
-
-        .field-select-input {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: 0 0;
-            border-radius: 8px;
-            border: 1px solid #c2c2c2;
-            color: #3b3b3b;
-            cursor: pointer;
-            font-family: Roboto;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 20px;
-            padding: 11px 12px;
-            text-indent: 0;
-            width: 100%
-        }
-
-        .field-select-input::-webkit-input-placeholder,
-        .field-select-input::placeholder {
-            color: #3b3b3b
-        }
-
-        .field-select-input:active,
-        .field-select-input:focus {
-            border: 1px solid #9b9b9b;
-            color: #555
-        }
-
-        .field-select-input:hover:not(:focus):not(:active) {
-            background-color: #fafafa;
-            border: 1px solid #c2c2c2
-        }
-
-        .field-select [name=hovered] {
-            background-color: #f5f5f5
-        }
-
-        .field-select [value=true] {
-            background-color: #fcddb3;
-            color: #555;
-            font-weight: 400
-        }
-
-        .field-select-input:focus+label {
-            top: 0;
-            font-size: 12px
-        }
-
-        .span-body {
-            grid-column: span 12
-        }
-
-        @keyframes blinkerWhite {
-            50% {
-                border-color: #fff
-            }
-        }
-
-        @keyframes blinkerYellow {
-            50% {
-                background-color: #f68e01
-            }
-        }
-
-        @keyframes blinkerWhite-v2 {
-            50% {
-                background-color: #000
-            }
-        }
-
-        .identity-button {
-            -webkit-tap-highlight-color: transparent;
-            cursor: pointer;
-            font-family: Roboto, sans-serif
-        }
-
-        .primary {
-            border: 1px solid #fac680;
-            border-radius: 100px;
-            color: #3b3b3b;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            padding: 0;
-            text-transform: uppercase;
-            white-space: nowrap;
-            width: -moz-fit-content;
-            width: fit-content
-        }
-
-        .primary {
-            background: #fde8cc;
-            border: 1px solid #fde8cc
-        }
-
-        .primary:hover {
-            background: #fef4e6;
-            border-color: #fac680
-        }
-
-        .primary:active {
-            background: #fbd299
-        }
-
-        @keyframes blinkerRed {
-            50% {
-                background-color: #b10000;
-                border: 1px solid #fff
-            }
-        }
-
-        @keyframes blinkerGreen {
-            50% {
-                background-color: #02840c;
-                border: 1px solid #fff
-            }
-        }
-
-        @keyframes blinkerGray {
-            50% {
-                background-color: #1f1f1f;
-                border: 1px solid #fff
-            }
-        }
-
-        @keyframes blinkerOrange {
-            50% {
-                background-color: #f68e01;
-                border: 1px solid #fff
-            }
-        }
-
-        @keyframes blinkerCyan {
-            50% {
-                background-color: #32dcdc;
-                border: 1px solid #fff
-            }
-        }
-
-        @keyframes blinker2 {
-            50% {
-                background-color: #fff
-            }
-        }
-
-        .button-disabled:hover {
-            cursor: not-allowed
-        }
-
-        :root {
-            --background-button: map-get($colord23, white-100);
-            --color-button: map-get($colord23, black-100)
-        }
-
-        .Registro {
-            margin-right: 30vw;
-            margin-left: 30vw;
-            padding: 20px 16px;
-            background-color: #fff;
-            border-bottom: 1px solid #d5d5d5
-        }
-
-
-
-        .Registro-Contenedor {
-            display: grid;
-            grid-template: auto/1fr 1fr;
-            gap: 10px 16px;
-            margin-bottom: 2px
-        }
-
-        .Registro-Contenedor>.Campo:first-child,
-        .Registro-Contenedor>.Campo:nth-child(n+4) {
-            grid-column: 1/3
-        }
-
-        .Registro-Contenedor .Campo {
-            margin-bottom: 0
-        }
-
-        .Registro-Contenedor .Campo .field-select-input.login-form-input,
-        .Registro-Contenedor .Campo .login-form-input {
-            width: 100%;
-            height: 44px;
-            padding: 12px
-        }
-
-        .Registro-Contenedor .Campo .field-select-input.login-form-input::-moz-placeholder,
-        .Registro-Contenedor .Campo .login-form-input::-moz-placeholder {
-            font-weight: 300;
-            color: #777
-        }
-
-        .Registro-Contenedor .Campo .field-select-input.login-form-input::placeholder,
-        .Registro-Contenedor .Campo .login-form-input::placeholder {
-            font-weight: 300;
-            color: #777
-        }
-
-        .Registro-Contenedor>.login-form-agree-terms-ctn {
-            font-size: 12px;
-            grid-column: 1/3;
-            display: grid;
-            grid-template: "check terms" max-content "error error" 14px/14px 1fr;
-            justify-content: center;
-            max-width: 420px;
-            margin: 0 auto;
-            gap: 4px 10px
-        }
-
-        .Registro-Contenedor>.login-form-agree-terms-ctn>label:first-child {
-            grid-area: check;
-            margin-right: 0
-        }
-
-        .Registro-Contenedor>.login-form-agree-terms-ctn>label:last-child {
-            grid-area: terms
-        }
-
-        .Registro-Contenedor>.login-form-agree-terms-ctn>.error {
-            min-width: 100%;
-            display: block;
-            text-align: center;
-            height: 14px;
-            color: #b10000;
-            font-weight: 400;
-            grid-area: error
-        }
-
-        .Registro-buttons-container {
-            display: flex;
-            flex-direction: column
-        }
-
-        .Registro-buttons-container .login-form-or-ctn {
-            font-size: 14px
-        }
-
-        .Registro-buttons-container .login-form-need-registration {
-            margin-top: 0;
-            margin-bottom: 0
-        }
-
-        .Registro-buttons-container .login-form-social-button {
-            margin-bottom: 16px
-        }
-
-
-
-        .Clase-Input {
-            margin-bottom: 20px;
+        .Campo {
             position: relative;
-            display: flex;
-            flex-direction: column;
-            width: 100%
         }
 
-        .Clase-Input-icon {
-            position: absolute;
-            right: 2px;
-            top: 1px;
-            padding: 0 10px 0 24px;
-            background-color: #fff;
-            height: 41px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 9px;
-            outline: 0
-        }
-
-        .Clase-Input-icon.button {
-            cursor: pointer
-        }
-
-        .Clase-Input input {
-            background-color: transparent;
-            border-radius: 9px;
-            border: 1px solid #c2c2c2;
-            color: #3b3b3b;
-            font-family: inherit;
-            font-weight: 400;
-            outline: 0;
-            padding: 11px 12px;
-            transition: border-color .1s ease-in-out;
-            width: 100%;
-            line-height: 20px
-        }
-
-        .Clase-Input label {
-            align-items: center;
-            background-color: #fff;
-            border-radius: 9px;
-            color: #777;
-            display: flex;
-            font-size: 14px;
-            height: 21px;
-            left: 10px;
-            padding: 0 5px;
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            width: calc(100% - 20px);
-            transform: translateY(-50%);
-            transition: top .1s ease-in-out, font-size .1s ease-in-out, height .1s ease-in-out;
-
+        .lista-ctn.oculto {
+            display: none;
         }
 
         .Clase-Input input:focus+label,
+        .Clase-Combo input:focus+label,
+        .Clase-Combo label.focus,
         .Clase-Input label.focus {
             top: 0;
-            font-size: 12px;
-            height: auto;
-            width: auto;
-        }
-        
-
-        .outlined-error input {
-            border-color: #b10000
         }
 
-        .outlined-error label {
-            top: calc(50% - 10px);
-            color: #b10000
+        .lista-ctn,
+        .lista-ctn-hide {
+            border-radius: 8px;
+            border: 1px solid #c2c2c2;
+            margin-top: 10px;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+            display: block;
         }
 
-        .outlined-error span {
-            color: #b10000;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 1.3;
-            margin-top: 4px;
-            padding-left: 12px
+        .lista {
+            background: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 0;
+            max-height: 180px;
+            overflow-y: auto;
+            padding: 0;
         }
 
-        .outlined-error {
-            margin-bottom: 0
+        .item {
+            list-style: none;
         }
 
-
-
-        .Clase-Input input:disabled {
-            background-color: #f5f5f5;
-            color: #9b9b9b;
-            cursor: not-allowed
+        .field-select-no-opt,
+        .opcion {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: default;
+            display: block;
+            font: inherit;
+            font-weight: 300;
+            line-height: 30px;
+            outline: inherit;
+            padding: 0;
+            text-align: start;
+            text-indent: 10px;
+            width: 100%;
         }
     </style>
 </head>
@@ -503,130 +142,145 @@
         <p class="centered-paragraph">Registrarme</p>
         <hr>
 
+        <div id="app">
+            <section v-if="error">Lo sentimos se produjo un error</section>
+            <section v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando .....</p>
 
-        <div id="Registro" class="Registro">
-            <div class="Registro-Contenedor">
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="mail" maxlength="50" name="mail" type="text" value=""><label
-                            for="mail">Mail *</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="firstName" maxlength="50" name="firstName" type="text"
-                            value=""><label for="firstName">Nombre (s) *</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="lastName" maxlength="50" name="lastName" type="text"
-                            value=""><label for="lastName">Apellido (s) *</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="field-select field-select-outlined" role="button" tabindex="-1"><input id="country"
-                            class="field-select-input " placeholder="" src="false" type="text" autocomplete="off"
-                            value=""><label for="country">País</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="city" maxlength="50" name="city" type="text" value=""><label
-                            for="city">Ciudad</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="street" maxlength="50" name="street" type="text" value=""><label
-                            for="street">Calle</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="number" maxlength="50" name="number" type="text" value=""><label
-                            for="number">Número</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="password" maxlength="30" name="password" type="password"
-                            value=""><label for="password">Contraseña *</label></div>
-                </div>
-                <div class="Campo">
-                    <div class="Clase-Input"><input id="confirmPassword" maxlength="30" name="confirmPassword"
-                            type="password" value=""><label for="confirmPassword">Confirmar contraseña *</label>
-                    </div>
-                </div>
-                <div class="login-form-agree-terms-ctn"><label class="login-form-agree-terms-ctn-check-main"><input
-                            aria-label="acept-terms" id="agreeTerms" type="checkbox" value="false"><span
-                            class="login-form-agree-terms-ctn-geekmark"></span></label><label for="agreeTerms">Acepto<a
-                            aria-label="Términos y condiciones" href="https://www.infobae.com/terminos-y-condiciones/"
-                            rel="noreferer noreferrer" target="_blank">términos y condiciones</a>y las<a
-                            aria-label="Políticas de privacidad" href="https://www.infobae.com/politicas-de-privacidad/"
-                            rel="noreferer noreferrer" target="_blank">políticas de privacidad</a>de
-                        Infobae.com</label><span class="error"></span></div>
-            </div>
-            <div class="Registro-buttons-container"><button aria-label="Continuar registro"
-                    class="login-form-button-primary identity-button-disabled" disabled=""
-                    id="loginButton">Continuar</button>
+                </section>
+                <section v-else>
+
+                    <div id="Registro" class="Registro">
+                        <div class="Registro-Contenedor">
+                            <div class="Campo">
+                                <div class="Clase-Input">
+                                    <input id="mail" maxlength="50" name="mail" type="text" value="">
+                                    <label for="mail">Mail *</label>
+                                </div>
+                            </div>
+
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="firstName" maxlength="50" name="firstName"
+                                        type="text" value=""><label for="firstName">Nombre (s) *</label></div>
+                            </div>
+
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="lastName" maxlength="50" name="lastName" type="text"
+                                        value=""><label for="lastName">Apellido (s) *</label></div>
+                            </div>
+
+                            <div class="Campo">
+                                <div class="Clase-Combo" role="button" tabindex="-1">
+                                    <input id="country" class="Clase-Combo-input" @input="filtrarPaises" @blur="validarBlur" @keydown.escape="ocultarLista" @keydown.tab="ocultarLista" placeholder="" src="false" type="text" autocomplete="off" value="">
+                                    <label for="country">País</label>
+                                </div>
+                                <div class="lista-ctn" v-show="mostrarLista"  ref="listaCtn" >
+                                    <ul class="lista">
+                                        
+                                        <li class="item" v-for="(pais, index) in paisesFiltrados">
+                                            <button class="opcion" :name="index === 0 ? 'hovered' : ' '" :key="pais.id" @click="seleccionarPais(pais.id,pais.descripcion)" value="false">{{ pais.descripcion }}</button>
+                                        </li>
+                            
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="city" maxlength="50" name="city" type="text"
+                                        value=""><label for="city">Ciudad</label></div>
+                            </div>
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="street" maxlength="50" name="street" type="text"
+                                        value=""><label for="street">Calle</label></div>
+                            </div>
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="number" maxlength="50" name="number" type="text"
+                                        value=""><label for="number">Número</label></div>
+                            </div>
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="password" maxlength="30" name="password"
+                                        type="password" value=""><label for="password">Contraseña *</label></div>
+                            </div>
+                            <div class="Campo">
+                                <div class="Clase-Input"><input id="confirmPassword" maxlength="30"
+                                        name="confirmPassword" type="password" value=""><label
+                                        for="confirmPassword">Confirmar contraseña *</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="login-form-agree-terms-ctn"><label
+                                class="login-form-agree-terms-ctn-check-main"><input aria-label="acept-terms"
+                                    id="agreeTerms" type="checkbox" value="false"><span
+                                    class="login-form-agree-terms-ctn-geekmark"></span></label><label
+                                for="agreeTerms">Acepto <a aria-label="Términos y condiciones"
+                                    href="https://www.infobae.com/terminos-y-condiciones/" rel="noreferer noreferrer"
+                                    target="_blank">términos y condiciones</a> y las <a
+                                    aria-label="Políticas de privacidad"
+                                    href="https://www.infobae.com/politicas-de-privacidad/" rel="noreferer noreferrer"
+                                    target="_blank">políticas de privacidad</a>de
+                                Infobae.com</label><span class="error"></span></div>
+
+                        <!--
+            <div class="Registro-buttons-container">
+                <button aria-label="Continuar registro" class="login-form-button-primary identity-button-disabled" disabled="" id="loginButton">Continuar</button>
                 <div class="login-form-or-ctn">
-                    <div></div>
-                    <p> O </p>
-                    <div></div>
-                </div><button id="sign-in-with-google-button" class="login-form-social-button"><svg width="18"
-                        height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="login-form-icon-google">
-                        <g clip-path="url(#clip0_2360_13870)">
-                            <path
-                                d="M3.765 8.99999C3.765 8.40865 3.87 7.86057 4.05 7.32692L0.945 5.01923C0.33 6.24519 0 7.60096 0 8.99999C0 10.4279 0.345 11.7836 0.945 12.9808L4.035 10.6586C3.855 10.1394 3.765 9.57692 3.765 8.99999Z"
-                                fill="#f1bc42"></path>
-                            <path
-                                d="M9.20982 3.67781C10.4398 3.67781 11.6398 4.09608 12.5998 4.8605L15.2848 2.2355C11.4748 -1.03854 5.66982 -0.67796 2.29482 3.04319C1.75482 3.64896 1.30482 4.31243 0.944824 5.01916L4.03482 7.32685C4.75482 5.20666 6.79482 3.67781 9.19482 3.67781H9.20982Z"
-                                fill="#d85040"></path>
-                            <path
-                                d="M4.04996 10.6731L0.959961 12.9808C2.45996 15.9375 5.56496 17.9856 9.16496 18H9.22496C11.475 18 13.62 17.2212 15.225 15.75L12.285 13.5144C11.46 14.0192 10.41 14.3077 9.23996 14.3077C6.82496 14.3077 4.78496 12.7789 4.07996 10.6587L4.04996 10.6731Z"
-                                fill="#58a45c"></path>
-                            <path
-                                d="M18 9C18 8.45192 17.925 7.90385 17.79 7.37019H9.20996V10.8462H14.145C13.89 12.0288 13.215 12.9375 12.255 13.5288L15.195 15.7644C16.89 14.2356 17.985 11.9423 17.985 9.01442L18 9Z"
-                                fill="#5086eb"></path>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_2360_13870">
-                                <rect width="18" height="18" fill="white"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg><span>Registrarme con Google</span></button><button id="facebook-button"
-                    class="login-form-social-button"><svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" class="login-form-icon-facebook">
-                        <path
-                            d="M9.50643 0C4.52716 0 0.5 4.02429 0.5 9C0.5 13.9757 4.52716 18 9.50643 18C9.5579 18 9.60936 18 9.66083 18C9.66083 15.8271 9.66083 13.3586 9.66083 11.1986V10.9929H7.73088V8.74286H9.66083C9.66083 8.65286 9.66083 8.58857 9.66083 8.52429C9.66083 7.92 9.6351 7.30286 9.68656 6.69857C9.76376 5.70857 10.1626 4.88571 11.1019 4.43571C11.4107 4.28143 11.7709 4.19143 12.1183 4.15286C12.8259 4.06286 13.5465 4.15286 14.267 4.20429V6.22286C14.267 6.22286 14.1383 6.22286 14.0868 6.22286C13.688 6.22286 13.2763 6.22286 12.8774 6.23571C12.3113 6.26143 12.0154 6.57 12.0025 7.12286C11.9896 7.63714 12.0025 8.13857 12.0025 8.65286C12.0025 8.67857 12.0025 8.70429 12.0025 8.74286H14.2155C14.1126 9.50143 14.0225 10.2471 13.9196 11.0057H11.9896V17.6657C15.7466 16.5857 18.5 13.1271 18.5 9.02571C18.5 4.05 14.4728 0.0257143 9.49357 0.0257143L9.50643 0Z"
-                            fill="#1877f2"></path>
-                    </svg><span>Registrarme con Facebook</span></button>
+                   <div></div>
+                   <p> O </p>
+                   <div></div>
+                </div>
+                <button id="sign-in-with-google-button" class="login-form-social-button">
+                   <svg width="18"
+                      height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"
+                      class="login-form-icon-google">
+                      <g clip-path="url(#clip0_2360_13870)">
+                         <path
+                            d="M3.765 8.99999C3.765 8.40865 3.87 7.86057 4.05 7.32692L0.945 5.01923C0.33 6.24519 0 7.60096 0 8.99999C0 10.4279 0.345 11.7836 0.945 12.9808L4.035 10.6586C3.855 10.1394 3.765 9.57692 3.765 8.99999Z"
+                            fill="#f1bc42"></path>
+                         <path
+                            d="M9.20982 3.67781C10.4398 3.67781 11.6398 4.09608 12.5998 4.8605L15.2848 2.2355C11.4748 -1.03854 5.66982 -0.67796 2.29482 3.04319C1.75482 3.64896 1.30482 4.31243 0.944824 5.01916L4.03482 7.32685C4.75482 5.20666 6.79482 3.67781 9.19482 3.67781H9.20982Z"
+                            fill="#d85040"></path>
+                         <path
+                            d="M4.04996 10.6731L0.959961 12.9808C2.45996 15.9375 5.56496 17.9856 9.16496 18H9.22496C11.475 18 13.62 17.2212 15.225 15.75L12.285 13.5144C11.46 14.0192 10.41 14.3077 9.23996 14.3077C6.82496 14.3077 4.78496 12.7789 4.07996 10.6587L4.04996 10.6731Z"
+                            fill="#58a45c"></path>
+                         <path
+                            d="M18 9C18 8.45192 17.925 7.90385 17.79 7.37019H9.20996V10.8462H14.145C13.89 12.0288 13.215 12.9375 12.255 13.5288L15.195 15.7644C16.89 14.2356 17.985 11.9423 17.985 9.01442L18 9Z"
+                            fill="#5086eb"></path>
+                      </g>
+                      <defs>
+                         <clipPath id="clip0_2360_13870">
+                            <rect width="18" height="18" fill="white"></rect>
+                         </clipPath>
+                      </defs>
+                   </svg>
+                   <span>Registrarme con Google</span>
+                </button>
+                <button id="facebook-button"
+                   class="login-form-social-button">
+                   <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" class="login-form-icon-facebook">
+                      <path
+                         d="M9.50643 0C4.52716 0 0.5 4.02429 0.5 9C0.5 13.9757 4.52716 18 9.50643 18C9.5579 18 9.60936 18 9.66083 18C9.66083 15.8271 9.66083 13.3586 9.66083 11.1986V10.9929H7.73088V8.74286H9.66083C9.66083 8.65286 9.66083 8.58857 9.66083 8.52429C9.66083 7.92 9.6351 7.30286 9.68656 6.69857C9.76376 5.70857 10.1626 4.88571 11.1019 4.43571C11.4107 4.28143 11.7709 4.19143 12.1183 4.15286C12.8259 4.06286 13.5465 4.15286 14.267 4.20429V6.22286C14.267 6.22286 14.1383 6.22286 14.0868 6.22286C13.688 6.22286 13.2763 6.22286 12.8774 6.23571C12.3113 6.26143 12.0154 6.57 12.0025 7.12286C11.9896 7.63714 12.0025 8.13857 12.0025 8.65286C12.0025 8.67857 12.0025 8.70429 12.0025 8.74286H14.2155C14.1126 9.50143 14.0225 10.2471 13.9196 11.0057H11.9896V17.6657C15.7466 16.5857 18.5 13.1271 18.5 9.02571C18.5 4.05 14.4728 0.0257143 9.49357 0.0257143L9.50643 0Z"
+                         fill="#1877f2"></path>
+                   </svg>
+                   <span>Registrarme con Facebook</span>
+                </button>
                 <div class="login-form-need-registration">Ya tengo cuenta,<button aria-label="Iniciar sesión">Iniciar
-                        sesión</button></div>
-            </div>
+                   sesión</button>
+                </div>
+             </div>
+-->
+                    </div>
+                </section>
+            </section>
         </div>
-
     </main>
     <footer id="footer"></footer>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="../js/articulos.js"></script>
-    <script>
-        const registro = document.getElementById('Registro');
-        registro.addEventListener('focusin', (event) => {
-            const target = event.target;
-            if (target.tagName === 'INPUT' && target.type === 'text') {
-                const label = registro.querySelector(`label[for="${target.id}"]`);
+    <script src="../js/registro.js"></script>
 
-                if (label) {
-                    label.classList.add('focus');
-                }
-            }
-        });
-
-        registro.addEventListener('focusout', (event) => {
-            const target = event.target;
-            if (target.tagName === 'INPUT' && target.type === 'text') {
-                const label = registro.querySelector(`label[for="${target.id}"]`);
-
-                if (label) {
-                    if (target.value) {
-                        label.classList.add('focus');
-                    } else {
-                        label.classList.remove('focus');
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>

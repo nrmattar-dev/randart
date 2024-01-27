@@ -17,3 +17,18 @@ class Articulo(db.Model):
     descripcion = db.Column(db.String(500))
     precio = db.Column(db.Numeric(precision=10, scale=2))
     imagen = db.Column(db.String(50))
+
+class Pais(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    descripcion = db.Column(db.String(50))
+
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    mail = db.Column(db.String(80))
+    nombre = db.Column(db.String(50))
+    apellido = db.Column(db.String(50))
+    pais_id = db.Column(db.Integer)
+    ciudad = db.Column(db.String(50))
+    calle  = db.Column(db.String(50))
+    numero  = db.Column(db.String(50))
+    password = db.Column(db.String(50))
