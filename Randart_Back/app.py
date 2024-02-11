@@ -5,6 +5,7 @@ from models import db
 from galerias import galerias_bp
 from articulos import articulos_bp
 from paises import paises_bp
+from usuarios import usuarios_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +20,7 @@ db.init_app(app)
 app.register_blueprint(galerias_bp)
 app.register_blueprint(articulos_bp)
 app.register_blueprint(paises_bp)
+app.register_blueprint(usuarios_bp)
 
 # Agrega una ruta para servir archivos estáticos
 @app.route('/uploads/<filename>') #Cuando esto ocurre llama a la función que le sigue y le pasa por parametros el filename

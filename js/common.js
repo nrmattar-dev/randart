@@ -25,7 +25,7 @@ function construye_header() {
             <li><a class="menu_link" href="${IndexPath}index.html"><img src="${ImagenesPath}Logo.png" alt="" />Inicio</a></li>
             <li><a class="menu_link" href="${RecursosPath}galeria.html"><img src="${ImagenesPath}Logo.png" alt="" />Galeria</a></li>
             <li><a class="menu_link" href="${RecursosPath}directorio.html"><img src="${ImagenesPath}Logo.png" alt="" />Directorio</a></li>
-            <li><a class="menu_link" href="${RecursosPath}formulario.html"><img src="${ImagenesPath}Logo.png" alt="" />Contacto</a></li>
+            <li><a class="menu_link" href="${RecursosPath}subituobra.html"><img src="${ImagenesPath}Logo.png" alt="" />Subí tu obra</a></li>
             <!--<li><a class="menu_link" href="${RecursosPath}crud.html"><img src="${ImagenesPath}Logo.png" alt="" />CRUD</a></li>-->
         </ul>
 

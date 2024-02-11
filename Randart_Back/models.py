@@ -25,6 +25,7 @@ class Pais(db.Model):
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mail = db.Column(db.String(80))
+    username = db.Column(db.String(80))
     nombre = db.Column(db.String(50))
     apellido = db.Column(db.String(50))
     pais_id = db.Column(db.Integer)
@@ -32,3 +33,4 @@ class Usuario(db.Model):
     calle  = db.Column(db.String(50))
     numero  = db.Column(db.String(50))
     password = db.Column(db.String(50))
+    activo = db.Column(db.Boolean)
