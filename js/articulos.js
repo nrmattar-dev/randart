@@ -3,8 +3,6 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        //url:"https://randart.pythonanywhere.com/articulos",
-        url:"http://127.0.0.1:5000/articulos?rand=true",
         articulos:[],
         error:false,
         cargando:true
@@ -12,11 +10,13 @@ const { createApp } = Vue
     },
     
     created() {
-        this.fetchData(this.url)  // Invocando al método
+        this.fetchData()  // Invocando al método
     },
     methods: {
-        fetchData(url) {
+        fetchData() {
             // Acá se consume la Api  /productos
+        //url:"https://randart.pythonanywhere.com/articulos",
+            const url = "http://127.0.0.1:5000/articulos?rand=true"
             fetch(url)
                 .then(response => response.json())
                 .then(data => {

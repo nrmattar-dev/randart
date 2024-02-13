@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../js/common.js"></script>
+    <title>Verificación de Usuario</title>
+    <link rel="stylesheet" href="../css/registro.css">
+</head>
+
+
+<body>
+
+    <header id="header"></header>
+
+    <main id="main">
+
+        <h1>Randart - Arte y colección al azar</h1>
+        <p class="centered-paragraph">Verificación</p>
+        <hr>
+
+        <div id="app">
+            <section v-if="error">Lo sentimos se produjo un error</section>
+            <section v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando .....</p>
+
+                </section>
+                <section v-else>
+                    <section v-if="verificado">
+                        <div class="Verificacion">
+                            <h4>USUARIO VERIFICADO</h4><svg class="svg-icon" width="32" height="32"
+                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect class="svg-icon-bg" x="0.5" y="0.5" width="31" height="31" rx="15.5" fill="white">
+                                </rect>
+                                <g clip-path="url(#clip0_2561_16018)">
+                                    <path
+                                        d="M22.2557 10.2857C20.1826 10.2857 18.1005 10.2857 16.0274 10.2857C13.9543 10.2857 11.8356 10.2857 9.74429 10.2857C8.63014 10.2857 8 10.9145 8 12.0425C8 14.6778 8 17.313 8 19.9482C8 21.0763 8.63014 21.7143 9.74429 21.7143C13.9178 21.7143 18.0913 21.7143 22.2648 21.7143C23.379 21.7143 24 21.0763 24 19.9482C24 17.313 24 14.6778 24 12.0425C24 10.9145 23.379 10.2857 22.2557 10.2857ZM21.4247 11.6172C20.3379 12.4956 19.2968 13.3278 18.2557 14.16C17.5616 14.724 16.8584 15.2788 16.1644 15.852C16.0365 15.963 15.9543 15.9538 15.8265 15.852C14.1096 14.4651 12.3927 13.0874 10.6758 11.7097C10.6575 11.6912 10.6301 11.6819 10.5571 11.6172H21.4338H21.4247ZM22.2466 20.4198C18.0822 20.4198 13.9178 20.4198 9.75342 20.4198C9.3516 20.4198 9.27854 20.3551 9.27854 19.9852C9.27854 17.4979 9.27854 15.0014 9.27854 12.5141C9.27854 12.4494 9.27854 12.3939 9.2968 12.2644C9.76256 12.6435 10.1918 12.9764 10.6119 13.3185C12.2283 14.613 13.8356 15.9075 15.4429 17.2113C15.8813 17.5626 16.1005 17.5626 16.5297 17.2113C18.5023 15.6209 20.484 14.0398 22.4566 12.4494C22.5205 12.4031 22.5845 12.3569 22.6849 12.2737C22.6849 12.3939 22.7032 12.4771 22.7032 12.5603C22.7032 15.0199 22.7032 17.4887 22.7032 19.9482C22.7032 20.3551 22.6393 20.4198 22.2374 20.4198H22.2466Z"
+                                        fill="#9B9B9B"></path>
+                                </g>
+                                <rect class="svg-icon-border" x="0.5" y="0.5" width="31" height="31" rx="15.5"
+                                    stroke="#9B9B9B"></rect>
+                                <defs>
+                                    <clipPath id="clip0_2561_16018">
+                                        <rect width="16" height="11.4286" fill="white" transform="translate(8 10.2857)">
+                                        </rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="register-verification-desc">¡{{datos.nombre}}! Gracias por registrarte en Randart.
+                            </p>
+                        </div>
+                    </section>
+                    <section v-else>
+                        <div class="Verificacion">
+                            <h4>TOKEN INVÁLIDO</h4><svg class="svg-icon" width="32" height="32"
+                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect class="svg-icon-bg" x="0.5" y="0.5" width="31" height="31" rx="15.5" fill="white">
+                                </rect>
+                                <g clip-path="url(#clip0_2561_16018)">
+                                    <path
+                                        d="M22.2557 10.2857C20.1826 10.2857 18.1005 10.2857 16.0274 10.2857C13.9543 10.2857 11.8356 10.2857 9.74429 10.2857C8.63014 10.2857 8 10.9145 8 12.0425C8 14.6778 8 17.313 8 19.9482C8 21.0763 8.63014 21.7143 9.74429 21.7143C13.9178 21.7143 18.0913 21.7143 22.2648 21.7143C23.379 21.7143 24 21.0763 24 19.9482C24 17.313 24 14.6778 24 12.0425C24 10.9145 23.379 10.2857 22.2557 10.2857ZM21.4247 11.6172C20.3379 12.4956 19.2968 13.3278 18.2557 14.16C17.5616 14.724 16.8584 15.2788 16.1644 15.852C16.0365 15.963 15.9543 15.9538 15.8265 15.852C14.1096 14.4651 12.3927 13.0874 10.6758 11.7097C10.6575 11.6912 10.6301 11.6819 10.5571 11.6172H21.4338H21.4247ZM22.2466 20.4198C18.0822 20.4198 13.9178 20.4198 9.75342 20.4198C9.3516 20.4198 9.27854 20.3551 9.27854 19.9852C9.27854 17.4979 9.27854 15.0014 9.27854 12.5141C9.27854 12.4494 9.27854 12.3939 9.2968 12.2644C9.76256 12.6435 10.1918 12.9764 10.6119 13.3185C12.2283 14.613 13.8356 15.9075 15.4429 17.2113C15.8813 17.5626 16.1005 17.5626 16.5297 17.2113C18.5023 15.6209 20.484 14.0398 22.4566 12.4494C22.5205 12.4031 22.5845 12.3569 22.6849 12.2737C22.6849 12.3939 22.7032 12.4771 22.7032 12.5603C22.7032 15.0199 22.7032 17.4887 22.7032 19.9482C22.7032 20.3551 22.6393 20.4198 22.2374 20.4198H22.2466Z"
+                                        fill="#9B9B9B"></path>
+                                </g>
+                                <rect class="svg-icon-border" x="0.5" y="0.5" width="31" height="31" rx="15.5"
+                                    stroke="#9B9B9B"></rect>
+                                <defs>
+                                    <clipPath id="clip0_2561_16018">
+                                        <rect width="16" height="11.4286" fill="white" transform="translate(8 10.2857)">
+                                        </rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../js/verificacion.js"></script>
+
+</body>
+
+</html>

@@ -32,5 +32,7 @@ class Usuario(db.Model):
     ciudad = db.Column(db.String(50))
     calle  = db.Column(db.String(50))
     numero  = db.Column(db.String(50))
-    password = db.Column(db.String(50))
+    password_hash = db.Column(db.String(128))
+    salt = db.Column(db.String(100)) 
+    verification_token = db.Column(db.String(100))
     activo = db.Column(db.Boolean)

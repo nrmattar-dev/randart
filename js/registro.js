@@ -3,8 +3,6 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      //url:"https://randart.pythonanywhere.com/paises",
-      url: "http://127.0.0.1:5000/paises",
       paisesFiltrados: [],
       paises: [],
       error: false,
@@ -18,9 +16,11 @@ createApp({
       /* validaciones */
       datos: {
         mail: '',
+        username: '',
         nombre: '',
         apellido: '',
         pais: '',
+        pais_id: '',
         ciudad: '',
         calle: '',
         numero: '',
@@ -58,13 +58,16 @@ createApp({
   },
 
   created() {
-    this.fetchData(this.url)  // Invocando al método
+    this.fetchData()  // Invocando al método
   },
   beforeUnmount() {
   },
   methods: {
-    fetchData(url) {
+    fetchData() {
       // Acá se consume la Api  /productos
+      //url:"https://randart.pythonanywhere.com/paises",
+      const url = "http://127.0.0.1:5000/paises"
+
       fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -92,9 +95,10 @@ createApp({
     },
 
     seleccionarPais(id, descripcion) {
-      console.log(this.datos.pais)
+
       if (id !== "0") {
         this.datos.pais = descripcion;
+        this.datos.pais_id = id;
         this.ValidarCampo('pais')
         this.ocultarLista();
       }
@@ -162,7 +166,7 @@ createApp({
           break;
         case 'pais':
 
-          this.datos.label.pais = (this.datos.pais);
+          this.datos.label.pais = (this.datos.pais_id);
 
           // Convertir this.datos.pais a minúsculas y eliminar espacios adicionales
           const lower_pais = this.datos.pais.trim().toLowerCase();
@@ -193,7 +197,7 @@ createApp({
             console.log("La contraseña no puede estar vacía")
           }
           else {
-            this.datos.valida.password = this.ValidarPassword(this.datos.password)
+            this.datos.valida.password = ValidarPassword(this.datos.password)
           }
           this.datos.label.password = (this.datos.password);
           break;
@@ -204,7 +208,7 @@ createApp({
             console.log("Las contraseñas no coinciden.");
           }
           else {
-            this.datos.valida.confirmacionpassword = this.ValidarPassword(this.datos.confirmacionpassword)
+            this.datos.valida.confirmacionpassword = ValidarPassword(this.datos.confirmacionpassword)
           }
           this.datos.label.confirmacionpassword = (this.datos.confirmacionpassword);
           break;
@@ -214,7 +218,7 @@ createApp({
         (this.datos.mail) &&
         (this.datos.nombre) &&
         (this.datos.apellido) &&
-        (this.datos.pais) &&
+        (this.datos.pais_id) &&
         (this.datos.ciudad) &&
         (this.datos.calle) &&
         (this.datos.numero) &&
@@ -243,7 +247,7 @@ createApp({
         }
         return valida;
       }
-      
+
     },
     Registro_Normal() {
 
@@ -252,30 +256,36 @@ createApp({
         username: this.datos.username,
         nombre: this.datos.nombre,
         apellido: this.datos.apellido,
-        pais: this.datos.pais,
+        pais_id: this.datos.pais_id,
         ciudad: this.datos.ciudad,
         calle: this.datos.calle,
         numero: this.datos.numero,
-        password: this.datos.password   
+        password: this.datos.password
       }
 
       //let url = "https://randart.pythonanywhere.com/articulo_insert"
       let url = "http://127.0.0.1:5000/usuario_insert"
       var options = {
-          body: JSON.stringify(usuario_json),
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(usuario_json),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
       }
       fetch(url, options)
-          .then(function () {
-              console.log("creado")
-              this.Modo = 'Verificacion'
-              
-          })
-          .catch(err => {
-              alert("Error al grabar" )
-              console.error(err);
-          })
+        /*
+            .then(function () {
+                console.log("creado")
+                this.Modo = 'Verificacion'
+                
+            })
+  */
+        .then(() => {  // Utiliza una función de flecha aquí
+          console.log("creado");
+          this.Modo = 'Verificacion'; // Accede a this correctamente
+        })
+        .catch(err => {
+          alert("Error al grabar")
+          console.error(err);
+        })
     }
   },
 }).mount('#app')

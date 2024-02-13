@@ -1,0 +1,200 @@
+.Registro {
+    display: grid;
+    grid-template: auto / 1fr;
+    gap: 3vh 0;
+}
+
+.Verificacion{
+    display: grid;
+    grid-template: auto / 1fr;
+    gap: 3vh 0;
+    justify-items: center;
+}
+
+.Registro-Contenedor {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    gap: 3vh 1vw;
+    /*max-width: 50%;*/
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+
+.Registro-Botones {
+    display: grid;
+    grid-template: auto / auto;
+    gap: 1vh;
+    width: 75%;
+    /*max-width: 50%;*/
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    /*justify-content: center;*/
+    /* para flexbox */
+    justify-items: center;
+    /* para grid */
+
+}
+
+.Separador {
+    height: 1px;
+    background-color: #555;
+    width: 100%;
+
+}
+
+.Div-Separador {
+    display: grid;
+    grid-template: auto / 1.25fr 0.5fr 1.25fr;
+    align-items: center;
+    width: 100%;
+
+}
+
+.Registro-Contenedor>.Campo:first-child
+
+/*,.Registro-Contenedor>.Campo:nth-child(n+10) */
+    {
+    grid-column: 1/3;
+}
+
+.Clase-Input input,
+.Clase-Combo-input {
+    background-color: transparent;
+    border-radius: 1vh;
+    border: 1px solid #c2c2c2;
+    padding: 1vh 1vw;
+    transition: border-color .1s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+    /*asegura que el ancho especificado incluya tanto el contenido como cualquier relleno o borde que se pueda agregar al elemento. */
+}
+
+.Clase-Combo-input {
+    cursor: pointer;
+}
+
+.Clase-Input label,
+.Clase-Combo label {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 1vh;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 10%;
+    transition: top .1s ease-in-out, font-size .1s ease-in-out, height .1s ease-in-out;
+}
+
+.Clase-Combo:before {
+    border-color: #9b9b9b;
+    border-style: solid;
+    border-width: 0 0.2vw 0.2vw 0;
+    cursor: pointer;
+    content: "";
+    height: 10px;
+    position: absolute;
+    right: 2vw;
+    top: 30%;
+    transform: rotate(45deg);
+    width: 10px;
+    z-index: -100;
+}
+
+.Campo {
+    position: relative;
+}
+
+.lista-ctn.oculto {
+    display: none;
+}
+
+.Clase-Input input:focus+label,
+.Clase-Combo input:focus+label,
+.Clase-Combo label.focus,
+.Clase-Input label.focus {
+    top: 0;
+}
+
+.Clase-Input.input-error input {
+    border-color: red;
+}
+
+.Clase-Input.input-error label {
+    color: red;
+}
+
+.lista-ctn,
+.lista-ctn-hide {
+    border-radius: 8px;
+    border: 1px solid #c2c2c2;
+    margin-top: 10px;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    display: block;
+}
+
+.lista {
+    background: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.item {
+    list-style: none;
+}
+
+.field-select-no-opt,
+.opcion {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: default;
+    display: block;
+    font: inherit;
+    font-weight: 300;
+    line-height: 30px;
+    outline: inherit;
+    padding: 0;
+    text-align: start;
+    text-indent: 10px;
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    background-color: #a7a7a7;
+
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    padding: 0.5vw 3vh;
+    /* Relleno interno */
+    border: none;
+    /* Quita el borde */
+    border-radius: 2vw;
+    /* Borde redondeado */
+    text-align: center;
+    /* Alineación del texto */
+    text-decoration: none;
+    /* Quita el subrayado predeterminado */
+    display: inline-block;
+    /* Mostrar como bloque en línea */
+    font-size: 1vw;
+    /* Tamaño de fuente */
+    cursor: not-allowed;
+    /* Cambia el cursor al pasar el ratón */
+}
+
+button.Habilitado {
+    background-color: #f12554;
+    cursor: pointer;
+    /* Cambiar el cursor a una mano */
+}
