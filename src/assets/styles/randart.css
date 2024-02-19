@@ -2,6 +2,7 @@
 @import url('articulos.css');
 @import url('crud.css');
 @import url('subituobra.css');
+@import url('registro.css');
 
 
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
@@ -36,7 +37,7 @@
 	font-style: normal;
 	font-weight: 900;
 	/*font-display: block;*/
-	src: url(../webfonts/fa-solid-900.ttf) format("truetype")
+	src: url(webfonts/fa-solid-900.ttf) format("truetype")
 }
 
 @font-face {
@@ -44,7 +45,7 @@
 	font-style: normal;
 	font-weight: 400;
 	/*font-display: block;*/
-	src: url(../webfonts/fa-brands-400.ttf) format("truetype")
+	src: url(webfonts/fa-brands-400.ttf) format("truetype")
 }
 
 .title{
@@ -470,3 +471,4 @@ ul.seguinos li {
 		grid-template-columns: auto auto;
 	}
 }
+
